@@ -8,11 +8,10 @@ def Normalization(data, train_data_length):
     min_max_scaler = preprocessing.MinMaxScaler()
     NL_data = min_max_scaler.fit_transform(data)
     NL_input_data = NL_data[:, :data_column - 1]
-    NL_input_data = NL_input_data.reshape((-1, 1, data_column - 1))  # 三维
-    # NL_input_data = NL_input_data.reshape((-1, data_column - 1)) # 二维
+    NL_input_data = NL_input_data.reshape((-1, 1, data_column - 1))
+    # NL_input_data = NL_input_data.reshape((-1, data_column - 1))
     NL_output_data = NL_data[:, -1]
 
-    # 训练集、测试集分开
     NL_train_X_data = NL_input_data[0:train_data_length]
     print("NL_train_X_data.shape: ", NL_train_X_data.shape)
     NL_train_Y_data = NL_output_data[0:train_data_length]
@@ -26,7 +25,7 @@ def Anti_Normalization(data, train_data_length, yhat):
     min_max_scaler = preprocessing.MinMaxScaler()
     NL_data = min_max_scaler.fit_transform(data)
     NL_input_data = NL_data[:, :data_column - 1]
-    NL_input_data = NL_input_data.reshape((-1, 1, data_column - 1))  # 三维
+    NL_input_data = NL_input_data.reshape((-1, 1, data_column - 1)) 
     NL_test_X_data = NL_input_data[train_data_length:]
     print("NL_test_X_data.shape: ", NL_test_X_data.shape)
     NL_test_X_data = NL_test_X_data.reshape(-1, data_column - 1)
